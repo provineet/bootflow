@@ -338,7 +338,11 @@ gulp.task("watch-assets", function () {
   // Watches for SCSS file changes
   if (watchFiles.scss === true) {
     gulp.watch(
-      [PATHS.src.scss + "/vendors/**/*.scss", PATHS.src.scss + "/vendors.scss"],
+      [
+        PATHS.src.scss + "/vendors/**/*.scss",
+        PATHS.src.scss + "/vendors.scss",
+        PATHS.src.scss + "/abstract/_variables.scss",
+      ],
       gulp.series("vendorsscss", reloadBrowser)
     );
 
@@ -385,8 +389,12 @@ gulp.task("watch-assets", function () {
   }
 
   // Watches for images file changes inside ./assets
-  if (watchFiles.assetsImg === true) {
-    gulp.watch(PATHS.assets.images + "/*", gulp.series(reloadBrowser));
+  if (watchFiles.html === true) {
+    gulp.watch(
+      "**/*.html",
+      { ignored: ["./node_modules/**/*.html"] },
+      gulp.series(reloadBrowser)
+    );
   }
 });
 

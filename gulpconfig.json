@@ -12,6 +12,7 @@
     }
   },
   "watchFiles": {
+    "html": true,
     "scss": true,
     "js": true,
     "images": true,
