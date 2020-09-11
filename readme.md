@@ -159,6 +159,12 @@ Gulpconfig.json file contains settings and variables used by the gulpfile.js. Be
       <td>Turn Development mode on and off</td>
     </tr>
     <tr>
+      <td>COMPRESSION</td>
+      <td>Boolean</td>
+      <td>true/false</td>
+      <td>Enable/Disable assets minification while compilation.</td>
+    </tr>
+    <tr>
     <td>BROWSER_ENV</td>
     <td>String</td>
     <td>"Static" or "Server"</td>
