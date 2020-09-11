@@ -119,7 +119,7 @@ Create your script files or functions inside src/js/scripts folder. All the *.js
     </tr>
     <tr>
       <td>gulp sprite</td>
-      <td>Creates CSS Sprite Image & SCSS file using images inside src/sprite_images. SCSS will be generated and placed inside src/scss/componenets. Browse the gulp package [Gulp.Spritesmith](https://www.npmjs.com/package/gulp.spritesmith) for more options.</td>
+      <td>Creates CSS Sprite Image & SCSS file using images inside src/sprite_images. SCSS will be generated and placed inside src/scss/componenets. Browse the gulp package <a href="https://www.npmjs.com/package/gulp.spritesmith">Gulp.Spritesmith]</a> for more options.</td>
     </tr>
     <tr>
       <td>gulp watch-assets</td>
