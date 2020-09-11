@@ -1,5 +1,6 @@
 {
   "DEV_MODE": true,
+  "COMPRESSION": true,
   "BROWSER_ENV": "static",
   "browserSyncOptions": {
     "static": {

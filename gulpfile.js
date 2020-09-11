@@ -1,6 +1,7 @@
 // loading gulpconfig.json file
 const {
   DEV_MODE, // 'development' or 'production'
+  COMPRESSION, // true | false : compresses css and js files while compiling them
   PATHS,
   cssSprites,
   distIgnore, // Files to be ignored while building the dist folder
@@ -36,7 +37,7 @@ const babel = require("gulp-babel");
 // Vendors SCSS Compilation
 // Run: gulp vendorsscss
 gulp.task("vendorsscss", function () {
-  return gulp
+  const vendorStyles = gulp
     .src(PATHS.src.scss + "/vendors.scss")
     .pipe(
       plumber({
@@ -52,14 +53,30 @@ gulp.task("vendorsscss", function () {
         env: autoPrefixerMode,
         grid: "autoplace", // should Autoprefixer add IE 10-11 prefixes for Grid Layout properties? false | autoplace | no-autoplace
       })
-    )
-    .pipe(gulp.dest(PATHS.assets.css));
+    );
+
+  if (COMPRESSION === true) {
+    vendorStyles
+      .pipe(cleanCSS({ compatibility: "*" }))
+      .pipe(
+        plumber({
+          errorHandler: function (err) {
+            console.log(err);
+            this.emit("end");
+          },
+        })
+      )
+      .pipe(rename({ suffix: ".min" }))
+      .pipe(gulp.dest(PATHS.assets.css));
+  }
+
+  return vendorStyles.pipe(gulp.dest(PATHS.assets.css));
 });
 
 // SCSS Compilation
 // Run: gulp scss
 gulp.task("scss", function () {
-  return gulp
+  const style = gulp
     .src(PATHS.src.scss + "/style.scss")
     .pipe(
       plumber({
@@ -76,7 +93,25 @@ gulp.task("scss", function () {
         env: autoPrefixerMode,
         grid: "autoplace", // should Autoprefixer add IE 10-11 prefixes for Grid Layout properties? false | autoplace | no-autoplace
       })
-    )
+    );
+
+  if (COMPRESSION === true) {
+    style
+      .pipe(cleanCSS({ compatibility: "*" }))
+      .pipe(
+        plumber({
+          errorHandler: function (err) {
+            console.log(err);
+            this.emit("end");
+          },
+        })
+      )
+      .pipe(rename({ suffix: ".min" }))
+      .pipe(gulpIf(DEV_MODE, sourceMaps.write("./maps")))
+      .pipe(gulp.dest(PATHS.assets.css));
+  }
+
+  return style
     .pipe(gulpIf(DEV_MODE, sourceMaps.write("./maps")))
     .pipe(gulp.dest(PATHS.assets.css));
 });
@@ -135,7 +170,7 @@ gulp.task("vendorjs", function () {
 // Run:  gulp scripts
 // Simply Concatenates all the .js files within src/js/scripts folder and src/js/scripts.js
 gulp.task("scripts", function () {
-  return gulp
+  const script = gulp
     .src([PATHS.src.js + "/scripts/*.js", PATHS.src.js + "/scripts.js"])
     .pipe(gulpIf(DEV_MODE, sourceMaps.init({ loadMaps: true })))
     .pipe(
@@ -147,7 +182,39 @@ gulp.task("scripts", function () {
       })
     )
     .pipe(concat("scripts.js"))
-    .pipe(babel({ presets: ["@babel/preset-env"] }))
+    .pipe(babel({ presets: ["@babel/preset-env"] }));
+
+  if (COMPRESSION === true) {
+    script
+      .pipe(
+        plumber({
+          errorHandler: function (err) {
+            console.log(err);
+            this.emit("end");
+          },
+        })
+      )
+      .pipe(rename({ suffix: ".min" }))
+      .pipe(
+        terser({
+          mangle: {
+            toplevel: true,
+          },
+          sourceMap: {
+            content: true,
+          },
+          output: {
+            comments: false,
+          },
+        })
+      )
+      .on("error", function (error) {
+        this.emit("end");
+      })
+      .pipe(gulp.dest(PATHS.assets.js));
+  }
+
+  return script
     .pipe(gulpIf(DEV_MODE, sourceMaps.write("./maps")))
     .pipe(gulp.dest(PATHS.assets.js));
 });
