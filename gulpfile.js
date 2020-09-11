@@ -31,6 +31,7 @@ const merge = require("merge-stream");
 const del = require("del");
 const browserSync = require("browser-sync").create();
 const sourceMaps = require("gulp-sourcemaps");
+const babel = require("gulp-babel");
 
 // Vendors SCSS Compilation
 // Run: gulp vendorsscss
@@ -146,6 +147,7 @@ gulp.task("scripts", function () {
       })
     )
     .pipe(concat("scripts.js"))
+    .pipe(babel({ presets: ["@babel/preset-env"] }))
     .pipe(gulpIf(DEV_MODE, sourceMaps.write("./maps")))
     .pipe(gulp.dest(PATHS.assets.js));
 });

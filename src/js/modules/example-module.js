@@ -5,7 +5,7 @@ const bootflow = (function () {
   let version = "1.0.0";
 
   let run = ($) => {
-    $(document).ready(function () {
+    $(function () {
       console.log("Name: ", name, "\nVersion: ", version);
     });
   };
