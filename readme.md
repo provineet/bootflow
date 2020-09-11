@@ -76,8 +76,8 @@ Create your script files or functions inside src/js/scripts folder. All the *.js
 <table class="table">
   <thead>
     <tr>
-      <th colspan="3">Gulp Command</th>
-      <th>Usage</th>
+      <th colspan="2">Gulp Command</th>
+      <th colspan="4">Usage</th>
     </tr>
   </thead>
   <tbody>
