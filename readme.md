@@ -76,8 +76,8 @@ Create your script files or functions inside src/js/scripts folder. All the *.js
 <table class="table">
   <thead>
     <tr>
-      <th rowspan="3">Gulp Command</th>
-      <th colspan="4">Usage</th>
+      <th>Gulp Command</th>
+      <th>Usage</th>
     </tr>
   </thead>
   <tbody>
@@ -140,16 +140,43 @@ Create your script files or functions inside src/js/scripts folder. All the *.js
 
 ## GulpConfig.json File
 
-```
 Gulpconfig.json file contains settings and variables used by the gulpfile.js. Below are a few important settings:
 
-| Setting | Option Type | Option Value | Usage |
-| --------------- | --------------- | --------------- |
-| DEV_MODE | Boolean | True or False | Turn Development mode on and off |
-| BROWSER_ENV | String | "Static" or "Server" | Static for HTML development; Server if you are running a local development server. |
-| browserSyncOptions | Object | Static or Server Object | Change Proxy value if you're using local server to serve your application. |
-| watchFiles | Object | ... | Select files to be made watchable by gulp. |
+<table class="table">
+  <thead>
+    <tr>
+      <th>Setting</th>
+      <th>Option Type</th>
+      <th>Option Value</th>
+      <th>Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DEV_MODE</td>
+      <td>Boolean</td>
+      <td>true/false</td>
+      <td>Turn Development mode on and off</td>
+    </tr>
+    <tr>
+    <td>BROWSER_ENV</td>
+    <td>String</td>
+    <td>"Static" or "Server"</td>
+    <td>Static for HTML development; Server if you are running a local development server.</td>
+    </tr>
+    <tr>
+    <td>browserSyncOptions</td>
+    <td>Object</td>
+    <td>Static or Server Object</td>
+    <td>Change Proxy value if you're using local server to serve your application.</td>
+    </tr>
+    <tr>
+    <td>watchFiles</td>
+    <td>Object</td>
+    <td>{...}</td>
+    <td>Select the type of files watched by gulp.</td>
+    </tr>
+  </tbody>
+</table>
 
 There are more options that can be tweaked inside gulpconfig.json feel free to check them out.
-
-```
