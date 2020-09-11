@@ -110,7 +110,7 @@ gulp.task("vendorjs", function () {
     //  the order of the scripts matter when vendors.js is created in production mode. Manage dependencies in top to bottom order.
 
     // JQuery
-    PATHS.src.js + "/vendors/jquery/jquery.slim.min.js",
+    PATHS.src.js + "/vendors/jquery/jquery.min.js",
     // Bootstrap JS
     PATHS.src.js + "/vendors/bootstrap/bootstrap.bundle.js",
     // Root Files in the vendors folder are automatically picked and processed
@@ -131,11 +131,30 @@ gulp.task("vendorjs", function () {
     .pipe(gulp.dest(PATHS.assets.js));
 });
 
-// Run:  gulp script
-// bundles the /src/js/scripts.js file via Webpack
-gulp.task("script", function () {
+// Run:  gulp scripts
+// Simply Concatenates all the .js files within src/js/scripts folder and src/js/scripts.js
+gulp.task("scripts", function () {
   return gulp
-    .src(PATHS.src.js + "/scripts.js")
+    .src([PATHS.src.js + "/scripts/*.js", PATHS.src.js + "/scripts.js"])
+    .pipe(gulpIf(DEV_MODE, sourceMaps.init({ loadMaps: true })))
+    .pipe(
+      plumber({
+        errorHandler: function (err) {
+          console.log(err);
+          this.emit("end");
+        },
+      })
+    )
+    .pipe(concat("scripts.js"))
+    .pipe(gulpIf(DEV_MODE, sourceMaps.write("./maps")))
+    .pipe(gulp.dest(PATHS.assets.js));
+});
+
+// Run:  gulp scriptsBundle
+// bundles the /src/js/scripts.js file via Webpack
+gulp.task("scriptsBundle", function () {
+  return gulp
+    .src(PATHS.src.js + "/scripts.modules.js")
     .pipe(
       gulpWebpack(require("./webpack.config.js"), webpack, function (
         err,
@@ -146,6 +165,7 @@ gulp.task("script", function () {
     )
     .pipe(gulpIf(DEV_MODE, sourceMaps.init({ loadMaps: true })))
     .pipe(gulpIf(DEV_MODE, sourceMaps.write("./maps")))
+    .pipe(rename({ basename: "scripts.bundle", suffix: ".min" }))
     .pipe(gulp.dest(PATHS.assets.js));
 });
 
@@ -165,7 +185,6 @@ gulp.task("minifyjs", function () {
       })
     )
     .pipe(rename({ suffix: ".min" }))
-    .pipe(gulpIf(DEV_MODE, sourceMaps.init({ loadMaps: true })))
     .pipe(
       terser({
         mangle: {
@@ -182,7 +201,6 @@ gulp.task("minifyjs", function () {
     .on("error", function (error) {
       this.emit("end");
     })
-    .pipe(gulpIf(DEV_MODE, sourceMaps.write("./maps")))
     .pipe(gulp.dest(PATHS.assets.js));
 });
 
@@ -246,7 +264,7 @@ gulp.task("sprite", function () {
   return merge(imgStream, cssStream);
 });
 
-// Run:  gulp copy-assets.
+// Run:  gulp copy-assets
 // Copy all needed dependency assets files from node_modules folder to src/js, src/scss folders
 gulp.task("copy-assets", function () {
   // Copy Slim Minified version of Jquery 3.*.* from node_modules
@@ -364,7 +382,14 @@ gulp.task("watch-assets", function () {
       PATHS.src.js + "/vendors/**/*.js",
       gulp.series("vendorjs", reloadBrowser)
     );
-    gulp.watch(PATHS.src.js + "/**/*.js", gulp.series("script", reloadBrowser));
+    gulp.watch(
+      [PATHS.src.js + "/modules/*.js", PATHS.src.js + "/scripts.modules.js"],
+      gulp.series("scriptsBundle", reloadBrowser)
+    );
+    gulp.watch(
+      [PATHS.src.js + "/scripts/*.js", PATHS.src.js + "/scripts.js"],
+      gulp.series("scripts", reloadBrowser)
+    );
   }
 
   // Watches for Images file changes inside ./src
@@ -408,7 +433,8 @@ gulp.task(
       "vendorsscss",
       "webfonts",
       "vendorjs",
-      "script",
+      "scripts",
+      "scriptsBundle",
       "imagemin",
       "sprite"
     ),
