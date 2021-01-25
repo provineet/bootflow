@@ -53,7 +53,8 @@ gulp.task("vendorsscss", function () {
         env: autoPrefixerMode,
         grid: "autoplace", // should Autoprefixer add IE 10-11 prefixes for Grid Layout properties? false | autoplace | no-autoplace
       })
-    );
+    )
+    .pipe(gulp.dest(PATHS.assets.css));
 
   if (COMPRESSION === true) {
     vendorStyles
@@ -70,7 +71,7 @@ gulp.task("vendorsscss", function () {
       .pipe(gulp.dest(PATHS.assets.css));
   }
 
-  return vendorStyles.pipe(gulp.dest(PATHS.assets.css));
+  return vendorStyles;
 });
 
 // SCSS Compilation
@@ -93,7 +94,9 @@ gulp.task("scss", function () {
         env: autoPrefixerMode,
         grid: "autoplace", // should Autoprefixer add IE 10-11 prefixes for Grid Layout properties? false | autoplace | no-autoplace
       })
-    );
+    )
+    .pipe(gulpIf(DEV_MODE, sourceMaps.write("./maps")))
+    .pipe(gulp.dest(PATHS.assets.css));
 
   if (COMPRESSION === true) {
     style
@@ -107,13 +110,11 @@ gulp.task("scss", function () {
         })
       )
       .pipe(rename({ suffix: ".min" }))
-      .pipe(gulpIf(DEV_MODE, sourceMaps.write("./maps")))
       .pipe(gulp.dest(PATHS.assets.css));
   }
 
-  return style
-    .pipe(gulpIf(DEV_MODE, sourceMaps.write("./maps")))
-    .pipe(gulp.dest(PATHS.assets.css));
+  return style;
+    
 });
 
 // Run: gulp minifycss

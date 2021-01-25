@@ -70,6 +70,7 @@
     "gulp.spritesmith": "^6.11.0",
     "jquery": "^3.5.1",
     "merge-stream": "^2.0.0",
+    "timepicker": "^1.13.14",
     "vinyl-buffer": "^1.0.1",
     "webpack": "^4.43.0",
     "webpack-stream": "^5.2.1"

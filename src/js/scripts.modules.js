@@ -9,6 +9,12 @@
 
 import bootflow from "./modules/example-module.js";
 
+import homeSlider from "./modules/home_slider";
+
+import timepicker from "timepicker";
+
 (function ($) {
   bootflow.run($);
+  homeSlider.run($, ".slider");
+  $("#hideExample").timepicker("isVisible");
 })(jQuery);
