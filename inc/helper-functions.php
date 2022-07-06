@@ -1,12 +1,24 @@
 <?php
+/**
+ * Bootflow Helper Functions
+ *
+ * @package WordPress
+ * @subpackage Bootflow
+ *
+ * @since 1.1
+ */
 
-function dd( $var, $die = false ){
+/**
+ * Dump & Die
+ *
+ * @param mix  $var varibale to dump.
+ * @param bool $die if die.
+ */
+function dd( $var, $die = false ) {
+	echo '<pre>';
+	var_dump( $var );
+	echo '</pre>';
 
-    echo "<pre>";
-    var_dump($var);
-    echo "</pre>";
-
-    ($die === true) && die();
+	( true === $die ) && die();
 
 }
-

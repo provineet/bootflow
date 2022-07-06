@@ -1,23 +1,38 @@
 <?php
+/**
+ * Theme Hooks Class
+ *
+ * @package WordPress
+ * @subpackage Bootflow
+ * @since 1.1
+ */
 
 namespace Bootflow;
 
-if (!defined('ABSPATH')) {
-    exit; // Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
 }
 
-class Theme_Hooks
-{
+/**
+ * Class for theme hooks
+ */
+class Theme_Hooks {
 
-    public function __construct()
-    {
 
-        add_action('wp_head', array( $this, 'print_something_in_head' ));
-        
-    }
+	/**
+	 * Constructor
+	 */
+	public function __construct() {
 
-    public function print_something_in_head(){
+		add_action( 'wp_head', array( $this, 'print_something_in_head' ) );
 
-    }
+	}
+
+	/**
+	 * Prints in Head
+	 */
+	public function print_something_in_head() {
+
+	}
 
 }
