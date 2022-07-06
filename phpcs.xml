@@ -18,4 +18,5 @@
          <property name="text_domain" type="array" value="bootflow" />
       </properties>
    </rule>
+   
 </ruleset>
