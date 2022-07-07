@@ -7,7 +7,7 @@
  * @since 1.1
  */
 
-namespace Bootflow;
+namespace BOOTFLOW\CLASSES;
 
 /**
  * Theme setup class

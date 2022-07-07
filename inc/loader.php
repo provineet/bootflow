@@ -7,7 +7,9 @@
  * @since 1.1
  */
 
-namespace Bootflow;
+namespace BOOTFLOW;
+
+use \BOOTFLOW\Autoloader;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -69,9 +71,8 @@ class Loader {
 	 * @access private
 	 */
 	private function register_classes_autoloader() {
-		require_once BFL_PATH . '/inc/classes/autoload.php';
-
-		Autoload::run();
+		require_once BFL_PATH . '/inc/class-autoloader.php';
+		Autoloader::run();
 	}
 
 	/**
@@ -101,9 +102,9 @@ class Loader {
 	 */
 	private function bootstrap_theme() {
 
-		new Theme_Setup();
+		new \BOOTFLOW\CLASSES\Theme_Setup();
 
-		new Theme_Hooks();
+		new \BOOTFLOW\CLASSES\Theme_Hooks();
 
 	}
 

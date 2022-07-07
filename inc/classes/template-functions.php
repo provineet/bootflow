@@ -7,7 +7,7 @@
  * @since 1.1
  */
 
-namespace Bootflow;
+namespace BOOTFLOW\CLASSES;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
