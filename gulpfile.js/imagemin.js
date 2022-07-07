@@ -1,9 +1,9 @@
 const { PATHS } = require("./gulpfile.config");
 const { src, dest } = require("gulp");
-const imageMin = require("gulp-imagemin");
+const { imageMin } = require("gulp-imagemin");
 
 // Running image optimizing task
-function imagemin() {
+function imgmin() {
   return src(PATHS.src.images + "/**")
     .pipe(
       imageMin(
@@ -23,4 +23,4 @@ function imagemin() {
     .pipe(dest(PATHS.assets.images));
 }
 
-module.exports = { imagemin };
+module.exports = { imgmin };

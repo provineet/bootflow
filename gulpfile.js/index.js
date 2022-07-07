@@ -1,11 +1,11 @@
 const { series, parallel } = require("gulp");
 
-// Importing Tasks
+// // Importing Tasks
 const { scss } = require("./scss");
 const { browsersync } = require("./browsersync");
 const { minify } = require("./minify");
 const { scripts } = require("./scripts");
-const { imagemin } = require("./imagemin");
+const { imgmin } = require("./imagemin");
 const { sprites } = require("./sprites");
 const { copyassets, fonts } = require("./copyassets");
 const { watch } = require("./watch");
@@ -17,7 +17,7 @@ const { build, devbuild } = require("./createdist");
 // Create a dev server using browserSync and serve it on localhost
 // To change your proxy address edit gulpconfig.json
 const serve = series(
-  parallel(scss, fonts, scripts, imagemin, sprites),
+  parallel(scss, fonts, scripts, imgmin, sprites),
   browsersync,
   watch
 );

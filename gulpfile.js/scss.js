@@ -7,7 +7,7 @@ const {
 const { src, dest, parallel } = require("gulp");
 const plumber = require("gulp-plumber");
 const gulpIf = require("gulp-if");
-const sass = require("gulp-sass");
+const sass = require("gulp-sass")(require("sass"));
 const autoPrefixer = require("gulp-autoprefixer");
 const cleanCSS = require("gulp-clean-css");
 const rename = require("gulp-rename");
