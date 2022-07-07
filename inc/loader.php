@@ -10,6 +10,8 @@
 namespace BOOTFLOW;
 
 use \BOOTFLOW\Autoloader;
+use \BOOTFLOW\CLASSES\Theme_Setup;
+use \BOOTFLOW\CLASSES\Theme_Hooks;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -102,9 +104,9 @@ class Loader {
 	 */
 	private function bootstrap_theme() {
 
-		new \BOOTFLOW\CLASSES\Theme_Setup();
+		new Theme_Setup();
 
-		new \BOOTFLOW\CLASSES\Theme_Hooks();
+		new Theme_Hooks();
 
 	}
 
