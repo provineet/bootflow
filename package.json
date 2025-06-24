@@ -1,6 +1,6 @@
 {
   "name": "bootflow",
-  "version": "1.4.1",
+  "version": "2.0.0",
   "description": "A modern frontend development boilerplate with Gulp, Webpack, SCSS, Bootstrap 4.5.x, FontAwesome 5, Assets Optimization and more.",
   "main": "index.js",
   "scripts": {
