@@ -1,25 +1,26 @@
 // Importing Abstract
-@import "./abstract/variables";
-@import "./abstract/mixins";
-@import "./abstract/functions";
+@use "./abstract/variables";
+@use "./abstract/mixins";
+@use "./abstract/functions";
 
 // Importing Base
-@import "./base/base";
-@import "./base/typography";
-@import "./base/animations";
-@import "./base/utilities";
+@use "./base/base";
+@use "./base/typography";
+@use "./base/animations";
+@use "./base/utilities";
 
 // Importing Layout
-@import "./layout/header";
-@import "./layout/footer";
-@import "./layout/sidebar";
+@use "./layout/header";
+@use "./layout/footer";
+@use "./layout/sidebar";
 
 // Importing Components
-@import "./components/article";
-@import "./components/forms";
+@use "./components/article";
+@use "./components/forms";
+@use "./components/sprite";
 // More component imports follow here
 
 // Importing Pages
-@import "./pages/home";
-@import "./pages/about";
-@import "./pages/contact";
+@use "./pages/home";
+@use "./pages/about";
+@use "./pages/contact";
