@@ -7,7 +7,7 @@ import imageMin, { gifsicle, mozjpeg, optipng, svgo } from 'gulp-imagemin';
 
 // Running image optimizing task
 function imgMinify() {
-  return src(PATHS.src.images + "/**")
+  return src(PATHS.src.images + "/**", {encoding: false})
     .pipe(
       imageMin(
         [
