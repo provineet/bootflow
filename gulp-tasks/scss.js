@@ -20,7 +20,7 @@ const sassCompiler = gulpSass(sass);
 
 // Compiles assets_src/scss/style.scss
 function scss() {
-  return processSCSS(`${PATHS.src.scss}/style.scss`, { sourcemaps: true });
+  return processSCSS(`${PATHS.src.scss}/*.scss`, { sourcemaps: true });
 }
 
 function processSCSS(source, srcObj = {}) {
