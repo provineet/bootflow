@@ -5,7 +5,7 @@ const { PATHS, watchFiles } = config;
 import { watch as gulpWatch, series } from 'gulp';
 import { reloadBrowser } from './browserSync.js';
 import { scss } from './scss.js';
-import { vendorJS, themeScripts } from './scripts.js';
+import { scripts } from './scripts.js';
 import { imgMinify } from './imageMin.js';
 import { sprites } from './sprites.js';
 // import unhandledError from 'cli-handle-unhandled';
@@ -38,10 +38,11 @@ function watchSCSS() {
 function watchJS() {
   // Watches for JS file changes inside ./src
   if (watchFiles.js == true) {
-    gulpWatch(
-      PATHS.src.js + "/vendors/**/*.js",
-      series(vendorJS, reloadBrowser)
-    );
+    // TODO: Make it watchable for newly added vendor files.
+    // gulpWatch(
+    //   PATHS.src.js + "/vendors/**/*.js",
+    //   series(vendorJS, reloadBrowser)
+    // );
     gulpWatch(
       [
         `${PATHS.src.js}/scripts/*.js`,
@@ -49,7 +50,7 @@ function watchJS() {
         `${PATHS.src.js}/modules/*.js`,
         `${PATHS.src.js}/scripts.modules.js`,
       ],
-      series(themeScripts, reloadBrowser)
+      series(scripts, reloadBrowser)
     );
   }
 }

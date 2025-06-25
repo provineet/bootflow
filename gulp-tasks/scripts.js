@@ -27,31 +27,6 @@ import gulpIgnore from 'gulp-ignore';
 
 // const unhandledError = require("cli-handle-unhandled");
 
-// COPIES JS FROM /src/vendors to assets/js
-// Creates a concatenated vendors.js file for production mode i.e. if MODE_DEV is false.
-function vendorJS() {
-  var scripts = [
-    // Order of dependencies matter in DEV_MOD: false.
-    // All the vendors scripts will be concatenated in single vendors.js file in production mode.
-    // Bootstrap JS
-    PATHS.src.js + "/vendors/bootstrap/bootstrap.bundle.min.js",
-    // Root Files in the vendors folder are automatically picked and processed
-    PATHS.src.js + "/vendors/*.js",
-  ];
-
-  return src(scripts)
-    .pipe(
-      plumber({
-        errorHandler: function (err) {
-          console.log(err);
-          this.emit("end");
-        },
-      })
-    )
-    .pipe(gulpIf(MODE == "production", concat("vendors.js")))
-    .pipe(dest(PATHS.assets.js));
-}
-
 // Build custom theme scripts without bundling
 // Simply Concatenates all the .js files within src/js/scripts/* folder and src/js/scripts.js
 function concatScripts() {
@@ -98,7 +73,7 @@ function scriptsBundle() {
     .pipe(dest(PATHS.assets.js));
 }
 
-function themeScripts() {
+function scripts() {
   if (JSBUILD == "webpack") {
     return scriptsBundle();
   } else {
@@ -106,6 +81,4 @@ function themeScripts() {
   }
 }
 
-const scripts = parallel(themeScripts, vendorJS);
-
-export { vendorJS, themeScripts, scripts };
+export { scripts };

@@ -5,11 +5,18 @@ const {
   distIgnore, 
   devDistIgnore } = config;
 
-import { src, dest, series } from 'gulp';
+import { src, dest, series, parallel } from 'gulp';
 import { deleteAsync } from 'del';
 import { resolve, sep, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import zip from 'gulp-zip';
+
+import { scss } from "./scss.js";
+import { srcVendorAssets as copyAssets, vendorAssets } from "./copyAssets.js";
+import { minify } from './minify.js';
+import { scripts } from './scripts.js';
+import { sprites } from "./sprites.js";
+import { imgMinify } from "./imageMin.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -49,7 +56,7 @@ function devDist() {
 }
 
 // Build a production dist
-const build = series(cleanDist, dist);
+const build = series( copyAssets, parallel( vendorAssets, scss, scripts, sprites, imgMinify ), minify, cleanDist, dist);
 
 // Build a dist for development
 const devBuild = series(cleanDevDist, devDist);

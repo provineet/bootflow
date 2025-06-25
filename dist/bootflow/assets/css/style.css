@@ -1,0 +1,70 @@
+body {
+  background: #fff;
+}
+
+/*
+Icon classes can be used entirely standalone. They are named after their original file names.
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
+*/
+.icon-audit {
+  background-image: url(./assets/images/sprite.png);
+  background-position: 0px 0px;
+  width: 64px;
+  height: 64px;
+}
+
+.icon-bank {
+  background-image: url(./assets/images/sprite.png);
+  background-position: -64px 0px;
+  width: 64px;
+  height: 64px;
+}
+
+.icon-compliance {
+  background-image: url(./assets/images/sprite.png);
+  background-position: 0px -64px;
+  width: 64px;
+  height: 64px;
+}
+
+.icon-contact {
+  background-image: url(./assets/images/sprite.png);
+  background-position: -64px -64px;
+  width: 64px;
+  height: 64px;
+}
+
+.icon-money {
+  background-image: url(./assets/images/sprite.png);
+  background-position: -128px 0px;
+  width: 64px;
+  height: 64px;
+}
+
+.icon-report {
+  background-image: url(./assets/images/sprite.png);
+  background-position: -128px -64px;
+  width: 64px;
+  height: 64px;
+}
+
+.icon-tax {
+  background-image: url(./assets/images/sprite.png);
+  background-position: 0px -128px;
+  width: 64px;
+  height: 64px;
+}

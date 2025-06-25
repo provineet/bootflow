@@ -1,10 +1,10 @@
 # BootFlow | A WordPress Scaffolding Developer Theme
 
-A powerful yet easy to setup WordPress Scaffolding Developer Theme that kickstarts your modern WordPress theme development cycle.
+A powerful yet easy to setup WordPress Scaffolding Developer Theme that kickstarts your custom WordPress theme development.
 
-For the frontend folks it has built-in support for SASS, Babel, Webpack, Image Optimizer, BrowserSync and Gulp.
+Develop with confidence and maintainability, built-in support for SASS, Babel, Webpack, Image Optimizer, BrowserSync and Gulp.
 
-In the theme PHP it has built-in support for Namespaces, Classes Autoloading, even an autoloader for your functions files.
+Namespace based Classes Autoloading for classes and functions.
 
 ![Gulp + Webpack Frontend Boilerplate](./bootflow-bolierplate.png)
 
