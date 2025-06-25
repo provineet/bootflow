@@ -8,6 +8,7 @@ import { scss } from './scss.js';
 import { scripts } from './scripts.js';
 import { imgMinify } from './imageMin.js';
 import { sprites } from './sprites.js';
+import { vendorAssets } from './copyAssets.js';
 // import unhandledError from 'cli-handle-unhandled';
 
 function watchSCSS() {
@@ -38,11 +39,6 @@ function watchSCSS() {
 function watchJS() {
   // Watches for JS file changes inside ./src
   if (watchFiles.js == true) {
-    // TODO: Make it watchable for newly added vendor files.
-    // gulpWatch(
-    //   PATHS.src.js + "/vendors/**/*.js",
-    //   series(vendorJS, reloadBrowser)
-    // );
     gulpWatch(
       [
         `${PATHS.src.js}/scripts/*.js`,
@@ -53,6 +49,16 @@ function watchJS() {
       series(scripts, reloadBrowser)
     );
   }
+}
+
+function watchVendors() {
+
+  if( watchFiles.vendors == true ){
+    gulpWatch( `${PATHS.src.folder}/vendors/**/**`,
+      series(vendorAssets, reloadBrowser)
+    );
+  }
+
 }
 
 function watchImg() {
@@ -98,6 +104,7 @@ function watch() {
   watchImg();
   watchAssetsFolder();
   watchPHP();
+  watchVendors();
 }
 
 export { watch };

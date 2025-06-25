@@ -19,6 +19,7 @@ export default {
     assetsCSS: false,
     assetsJS: false,
     assetsIMG: false,
+    vendors: true
   },
   cssSprites: {
     retina: false,

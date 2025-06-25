@@ -37,7 +37,6 @@ function copyVendorAssets() {
   const vendorFiles = [
     'bootstrap/dist/css/bootstrap.min.css',
     'bootstrap/dist/js/bootstrap.bundle.min.js',
-    'bootstrap/dist/js/bootstrap.min.js',
     'fontawesome/css/all.min.css',
     'fontawesome/js/all.min.js',
     'fontawesome/webfonts/**/**'
@@ -52,4 +51,25 @@ function copyVendorAssets() {
 
 }
 
-export { copySrcVendorAssets as srcVendorAssets, copyVendorAssets as vendorAssets };
+function additionalVendors() {
+
+  return src([
+    `${PATHS.src.folder}/vendors/**/**`,                         // include all
+    `!${PATHS.src.folder}/vendors/bootstrap/**`,   
+    `!${PATHS.src.folder}/vendors/bootstrap`,
+    `!${PATHS.src.folder}/vendors/fontawesome/**`,  
+    `!${PATHS.src.folder}/vendors/fontawesome`,  
+  ],
+  {
+    base: `${PATHS.src.folder}/vendors`,
+    allowEmpty: true,
+  })
+  .pipe(
+    dest(PATHS.assets.folder + "/vendors/")
+  );
+
+}
+
+const vendorAssets = parallel( copyVendorAssets, additionalVendors );
+
+export { copySrcVendorAssets as srcVendorAssets, vendorAssets };
