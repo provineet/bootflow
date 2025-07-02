@@ -1,20 +1,54 @@
-# BootFlow | A WordPress Scaffolding Developer Theme
+# Bootflow ⚡️  
+*A modern WordPress scaffolding theme for fast, modular development.*
 
-A powerful yet easy to setup WordPress Scaffolding Developer Theme that kickstarts your custom WordPress theme development.
+Bootflow is a streamlined WordPress scaffolding theme I created to simplify and accelerate custom theme development. It’s built with modern development workflows in mind—think clean structure, modular code, and CLI-driven setup. Whether you're building your next client project or a complex web app on WordPress, Bootflow gives you a solid, developer-friendly foundation to start fast and scale cleanly.
 
-Develop with confidence and maintainability, built-in support for SASS, Babel, Webpack, Image Optimizer, BrowserSync and Gulp.
-
-Namespace based Classes Autoloading for classes and functions.
 
 ![Gulp + Webpack Frontend Boilerplate](./bootflow-bolierplate.png)
 
-## ⚙️ Installtion
+## Features
 
-It requires [nodejs](https://nodejs.org/en/) with [npm](https://www.npmjs.com/get-npm) and a global installation of [gulp 4.x](http://gulpjs.com/) on your development machine.
+- ⚙️ **Modern Development Workflow**  
+  Built with Gulp to automate SCSS compilation, JavaScript transpilation (via Babel), and live browser reloading for a seamless dev experience.
 
-You can install NodeJs from [here](https://nodejs.org/en/download/).
+- 🎨 **SCSS Support**  
+  Write modular, maintainable styles with Sass. Folder structure encourages scalability and clean code practices.
 
-Once Node is installed on your system, open your terminal and run:
+- ✨ **ES6+ JavaScript**  
+  Use modern JavaScript syntax. Transpiling via Babel ensures broad browser compatibility.
+
+- 🧹 **Linting and Code Quality**  
+  Includes ESLint and SCSS-Lint (via Stylelint) to enforce best practices and maintain clean, consistent code across the project.
+
+- 📦 **Optimized Asset Management**  
+  Gulp handles both development and production environments efficiently—minifies, versions, and organizes assets.
+
+- 📐 **WordPress Best Practices**  
+  Theme structure follows WordPress standards, making it extensible and compatible with gutenberg, plugins, and future updates.
+
+
+## Getting Started
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+- [Node.js](https://nodejs.org/) (v22+)
+- [NPM](https://nodejs.org/) (v10+)
+- [GULP](https://gulpjs.com/) (v4+)
+- [Composer](https://getcomposer.org/) (optional, for PHP dependencies)
+
+You can install Node and NPM from [here](https://nodejs.org/en/download/).
+
+Once Node.js and npm are installed, verify that you are using the recommended versions:
+
+```
+node --version && npm --version
+```
+> ✅ **Recommended**: Node.js **v14+** and npm **v6+**
+
+
+To install gulp, open your terminal window and run the command:
 
 ```
 npm install --global gulp gulp-cli
@@ -24,28 +58,96 @@ To check your gulp version run:
 
 ```
 gulp --version
-
-CLI version: 2.*.*
-Local version: 4.*.*
 ```
+> ✅ **Recommended**: Local Version **v4+** and CLI Version **v3+**
 
-## 🚀 Let's get you started quickly!
+## ⚙️ Installation
 
+#1: Clone the repo
 ```
-1. Clone this repo
 git clone https://github.com/provineet/bootflow
+```
 
-2. cd into directory bootflow
+#2: cd into directory bootflow
+```
+cd bootflow
+```
 
-3. Run `npm install` to install all dependencies
+#3: Install npm dependencies
 
-4. Edit gulpconfig.js/gulpfile.config.js and place your localhost url in line 10 : proxy: "wpdev.local"
+```
+npm install
+```
 
-4. Finally, Run `npm run serve` to start a development server
+#4: Edit gulp config options to serve your WordPress site in gulp-tasks/gulp.config.js file.
+
+Find and edit the below give code in the file.
+
+``` 
+...
+browserSyncOptions: {
+    // localhost url to proxy
+    proxy: "PASTE YOUR WORDPRESS SITE URL HERE",
+    notify: false,
+  },
+...
+  ```
+
+#5: Finally, Run `npm run serve` to start a development server.
 
 Happy Coding 👍
 
+
+## 📁 Folder Structure
+
 ```
+bootflow/
+├── assets/
+│   ├── css/
+│   ├── images/
+│   ├── js/
+│   └── vendors/
+├── assets_src/
+│   ├── images/
+│   ├── js/
+│   ├── scss/
+│   ├── sprite_images/
+│   └── vendors/
+├── gulp-tasks/
+│   ├── browserSync.js
+│   ├── copyAssets.js
+│   ├── createDist.js
+│   ├── gulpfile.config.js
+│   ├── imageMin.js
+│   ├── index.js
+│   ├── minify.js
+│   ├── scripts.js
+│   ├── scss.js
+│   ├── sprites.js
+│   ├── vendorAssets.js
+│   ├── watch.js
+│   └── webpack.config.js
+├── inc/
+│   ├── class-autoloader.php
+│   ├── classes/
+│   ├── helper-functions.php
+│   └── loader.php
+├── babel.config.json
+├── bootflow-bolierplate.png
+├── footer.php
+├── functions.php
+├── gulpfile.js
+├── header.php
+├── index.php
+├── LICENSE
+├── package.json
+├── package-lock.json
+├── phpcs.xml
+├── readme.md
+├── screenshot.png
+└── style.css
+```
+
 
 ## ⚙️ Gulp Configurations
 
@@ -285,3 +387,18 @@ Create your script files or functions inside src/js/scripts folder. All the *.js
 </table>
 
 <br>
+
+> **Connect with me on X (formerly Twitter)**
+> I share dev tools, coding tips, and tutorials to help fellow developers level up.  
+> <br>[![Follow on X](https://img.shields.io/badge/X-@MrVineetVerma-black?logo=x)](https://twitter.com/mrvineetverma) for insights, experiments, and open-source goodness.
+
+<br>
+
+> 📝 **Follow my blog**  
+> I write about WordPress development, performance tips, and the latest in the dev world at [BlogOhBlog.com](https://blogohblog.com) — check it out for more hands-on content.
+
+<br>
+
+> 💡 **Have feedback or ideas?**  
+> Reach out on X or fork this repo, open a pull request, and let’s build something better together.
+
