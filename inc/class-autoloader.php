@@ -86,34 +86,62 @@ class Autoloader {
 	}
 
 	/**
-	 * Load class.
+	 * Loads a class file from the default path.
 	 *
-	 * For a given class name, require the class file.
+	 * Resolves the file path for a given class name using the classes map,
+	 * or falls back to a WordPress-style file naming convention, then includes it.
 	 *
-	 * @since  1.6.0
+	 * @since  1.6.2
 	 * @access private
 	 * @static
 	 *
-	 * @param string $class_name Class name.
+	 * @param string $namespaced_class_name Class name relative to the default namespace.
+	 * @return void
 	 */
-	private static function load_class( $class_name ) {
+	private static function load_class( $namespaced_class_name ) {
 
 		$classes_map = self::get_classes_map();
 
-		if ( isset( $classes_map[ $class_name ] ) ) {
-			$filename = self::$default_path . '/' . $classes_map[ $class_name ];
+		if ( isset( $classes_map[ $namespaced_class_name ] ) ) {
+			$filename = self::$default_path . DIRECTORY_SEPARATOR . $classes_map[ $namespaced_class_name ];
 		} else {
 			$filename = strtolower(
 				preg_replace(
-					array( '/([a-z])([A-Z])/', '/_/', '/\\\/' ),
-					array( '$1-$2', '-', DIRECTORY_SEPARATOR ),
-					$class_name
+					array( '/([a-z])([A-Z])/', '/_/', '/\\\/', '/^(.+)\/(.*)$/' ),
+					array( '$1-$2', '-', DIRECTORY_SEPARATOR, '$1/class-$2' ),
+					$namespaced_class_name
 				)
 			);
-
 			$filename = self::$default_path . $filename . '.php';
-
 		}
+
+		if ( is_readable( $filename ) ) {
+			include_once $filename;
+		}
+	}
+
+	/**
+	 * Load traits.
+	 *
+	 * For a given class name, require the class file.
+	 *
+	 * @since  1.0.0
+	 * @access private
+	 * @static
+	 *
+	 * @param string $trait_name Class name with namespaced path.
+	 */
+	private static function load_trait( $trait_name ) {
+
+		$filename = strtolower(
+			preg_replace(
+				array( '/([a-z])([A-Z])/', '/_/', '/\\\/', '/^(.+)\/(.*)$/' ),
+				array( '$1-$2', '-', DIRECTORY_SEPARATOR, '$1/trait-$2' ),
+				$trait_name
+			)
+		);
+
+		$filename = self::$default_path . $filename . '.php';
 
 		if ( is_readable( $filename ) ) {
 			include_once $filename;
@@ -129,24 +157,21 @@ class Autoloader {
 	 * @access private
 	 * @static
 	 *
-	 * @param string $class Class Name to be loaded.
+	 * @param string $requested_class Class Name to be loaded.
 	 */
-	private static function autoload( $class ) {
-
-		$len = strlen( self::$default_namespace );
+	private static function autoload( $requested_class ) {
 
 		// Move to the next autoloader if class doesn't belong to the default_namespace.
-		if ( 0 !== strpos( $class, self::$default_namespace . '\\' ) ) {
+		if ( 0 !== strpos( $requested_class, self::$default_namespace . '\\' ) ) {
 			return;
 		}
 
 		// get the relative classname.
-		$class_name = preg_replace( '/^' . self::$default_namespace . '\\\/', '', $class );
+		$class_name = preg_replace( '/^' . self::$default_namespace . '\\\/', '', $requested_class );
 
-		// get the namespaced classname.
-		$namespaced_class_name = self::$default_namespace . '\\' . $class_name;
-
-		if ( ! class_exists( $class ) ) {
+		if ( false !== strpos( $class_name, 'TRAITS' ) ) {
+			self::load_trait( $class_name );
+		} elseif ( ! class_exists( $class_name ) ) {
 			self::load_class( $class_name );
 		}
 	}
