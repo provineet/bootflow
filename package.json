@@ -1,14 +1,14 @@
 {
   "name": "bootflow",
   "version": "2.0.0",
-  "description": "A modern frontend development boilerplate with Gulp, Webpack, SCSS, Bootstrap 4.5.x, FontAwesome 5, Assets Optimization and more.",
+  "description": "A developer-friendly WordPress starter theme with SCSS, Bootstrap 5, Webpack builds, asset optimization, and everything wired for modern workflows.",
   "main": "index.js",
   "scripts": {
-    "postinstall": "gulp copyassets",
+    "postinstall": "gulp copyAssets",
     "serve": "gulp serve",
     "build": "gulp build",
-    "devbuild": "gulp devbuild",
-    "copy-vendors": "gulp copyassets"
+    "devbuild": "gulp devBuild",
+    "copy-vendors": "gulp copyAssets"
   },
   "repository": {
     "type": "git",
@@ -52,13 +52,13 @@
     ]
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^6.7.2",
-    "bootstrap": "^5.3.7",
+    "@fortawesome/fontawesome-free": "^7.0.1",
+    "bootstrap": "^5.3.8",
     "browser-sync": "^3.0.4",
     "cli-handle-unhandled": "^1.1.2",
-    "del": "^8.0.0",
+    "del": "^8.0.1",
     "gulp": "^5.0.1",
-    "gulp-autoprefixer": "^9.0.0",
+    "gulp-autoprefixer": "^10.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^4.3.0",
     "gulp-cli": "^3.1.0",
@@ -66,7 +66,7 @@
     "gulp-if": "^3.0.0",
     "gulp-ignore": "^3.0.0",
     "gulp-plumber": "^1.2.1",
-    "gulp-rename": "^2.0.0",
+    "gulp-rename": "^2.1.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-terser": "^2.1.0",
     "gulp-terser-js": "^5.2.2",
@@ -74,20 +74,20 @@
     "gulp.spritesmith": "^6.13.1",
     "jquery": "^3.7.1",
     "npm-check": "^6.0.1",
-    "terser": "^5.43.0",
+    "terser": "^5.44.0",
     "through2": "^4.0.2",
     "vinyl-buffer": "^1.0.1",
     "vinyl-named": "^1.1.0",
-    "webpack": "^5.99.9",
+    "webpack": "^5.101.3",
     "webpack-stream": "^7.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.27.4",
-    "@babel/preset-env": "^7.27.2",
+    "@babel/core": "^7.28.4",
+    "@babel/preset-env": "^7.28.3",
     "babel-loader": "^10.0.0",
     "gulp-imagemin": "^9.1.0",
     "gulp-sass": "^6.0.1",
     "merge-stream": "^2.0.0",
-    "sass": "^1.89.2"
+    "sass": "^1.93.2"
   }
 }

@@ -1,10 +1,23 @@
-# Bootflow ⚡️  
-*A modern WordPress scaffolding theme for fast, modular development.*
-
-Bootflow is a streamlined WordPress scaffolding theme I created to simplify and accelerate custom theme development. It’s built with modern development workflows in mind—think clean structure, modular code, and CLI-driven setup. Whether you're building your next client project or a complex web app on WordPress, Bootflow gives you a solid, developer-friendly foundation to start fast and scale cleanly.
+# Bootflow Classic ⚡️  
+*Bootflow Classic gives you the best of modern front-end tooling—Gulp, Webpack, SCSS, Bootstrap, FontAwesome—while keeping a classic WordPress theme structure.*
 
 
 ![Gulp + Webpack Frontend Boilerplate](./bootflow-bolierplate.png)
+
+
+No Full Site Editing. No theme.json complexity. Just PHP templates, enqueues, and functions.php wired with a clean, modular build system for developers who want control over markup, CSS, and JS the traditional way.
+
+Bootflow Classic is a streamlined WordPress scaffolding theme built for developers who want the speed and structure of modern workflows—without getting locked into Full Site Editing or block-based complexity. It delivers:
+
+- Clean, modular architecture for traditional WordPress theming
+
+- CLI-driven setup to get you coding in minutes
+
+- Gulp + Webpack + SCSS for asset pipelines, minification, and live reload
+
+- A developer-first foundation to power everything from small client sites to custom web applications on WordPress
+
+Whether you’re hacking on your next project or delivering production-grade code, Bootflow Classic gives you a fast start, a maintainable structure, and room to scale cleanly.
 
 ## Features
 

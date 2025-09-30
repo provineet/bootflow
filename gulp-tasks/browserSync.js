@@ -5,18 +5,18 @@ const { browserSyncOptions } = config;
 import browserSyncModule from 'browser-sync';
 
 // Create browserSync instance
-const browserSync = browserSyncModule.create();
+const browserSyncInstance = browserSyncModule.create();
 
-// Run: gulp browsersync
+// Run: gulp browserSyncInstance
 // Starts browser-sync task for starting the server.
-function browsersync(done) {
-  browserSync.init({}, browserSyncOptions);
+function browserSync(done) {
+  browserSyncInstance.init(browserSyncOptions);
   done();
 }
 
 function reloadBrowser(done) {
-  browserSync.reload();
+  browserSyncInstance.reload();
   done();
 }
 
-export { browsersync, reloadBrowser };
+export { browserSync, browserSyncInstance, reloadBrowser };

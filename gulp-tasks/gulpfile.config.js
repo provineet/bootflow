@@ -4,10 +4,10 @@ export default {
   // compress CSS & Js files?
   COMPRESSION: true,
   // "concat | webpack"
-  JSBUILD: "concat",
+  JSBUILD: "webpack",
   browserSyncOptions: {
     // localhost url to proxy
-    proxy: "wpdev.local",
+    proxy: "localhost:8080",
     notify: false,
   },
   watchFiles: {

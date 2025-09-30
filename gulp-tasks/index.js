@@ -6,20 +6,8 @@ import { scripts } from './scripts.js';
 import { build, devBuild, cleanDist, cleanDevDist } from "./createDist.js";
 import { sprites } from "./sprites.js";
 import { imgMinify } from "./imageMin.js";
-import { browsersync, reloadBrowser } from "./browserSync.js";
+import { browserSync, reloadBrowser } from "./browserSync.js";
 import { watch } from "./watch.js";
-
-// // Importing Tasks
-// const { scss } = require("./scss");
-// const { browserSync } = require("./browserSync");
-// const { minify } = require("./minify");
-// const { scripts } = require("./scripts");
-// // const { imgMin } = require("./imagemin");
-// const { sprites } = require("./sprites");
-// const { copyAssets, fonts } = require("./copyAssets");
-// const { watch } = require("./watch");
-
-// const { build, devBuild, cleanDist, cleanDevDist } = require("./createDist");
 
 // Serves website on localhost and watch for changes
 // Compiles SCSS, JS, Optimize Images, Create Sprite Images and SCSS
@@ -27,7 +15,7 @@ import { watch } from "./watch.js";
 // To change your proxy address edit gulpconfig.json
 const serve = series(
   parallel(scss, vendorAssets, scripts, imgMinify, sprites),
-  browsersync,
+  browserSync,
   watch
 );
 
