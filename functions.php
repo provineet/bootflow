@@ -18,7 +18,7 @@ $bootflow = wp_get_theme();
 ( defined( 'BFL_PATH' ) ) || define( 'BFL_PATH', get_template_directory() );
 ( defined( 'BFL_ASSETS' ) ) || define( 'BFL_ASSETS', get_template_directory_uri() . '/assets/' );
 
-if ( is_readable( BFL_PATH . '/inc/loader.php' ) ) {
-	require_once BFL_PATH . '/inc/loader.php';
+if ( is_readable( BFL_PATH . '/inc/class-loader.php' ) ) {
+	require_once BFL_PATH . '/inc/class-loader.php';
 	\Bootflow\Loader::instance();
 }
